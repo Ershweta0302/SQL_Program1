@@ -1,0 +1,37 @@
+create database DB
+
+use DB
+
+create table table1
+(
+id int  primary key identity,
+firstname varchar(20),
+lastname varchar(20),
+qulifecation varchar(20)
+);
+
+insert into  table1 values ('Prem','Sagar','B.A.')
+insert into  table1 values ('Krish','Yadav','B.Sc')
+insert into  table1 values ('Prashant','Kumar','B.C.A')
+insert into  table1 values ('Rajesh','Kumar','LLB.')
+insert into  table1 values ('Avinash','Arya','M.A.')
+insert into  table1 values ('Raj','Sonkar','B.Sc.')
+insert into  table1 values ('Saurabh','Sonkar','B.tech')
+
+select * from table1
+
+select from table1 --Incorrect Syntax
+
+delete  from table1 where id= 3
+
+delete * from table1 where id=2 --Incorrect Syntax
+
+update table1 set firstname='Amit'  where id=2
+
+drop table table1 --all table remove
+
+truncate table table1 --filed rahta hai data delete ho jata hai 
+
+delete  from table1 --filed rahta hai data delete ho jata hai 
+
+delete from table1 where id=17
