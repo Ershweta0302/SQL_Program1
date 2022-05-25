@@ -1,0 +1,44 @@
+create database tri
+
+use tri
+
+create table studenttri1(
+stu_id int primary key identity,
+stu_name varchar(20),
+stu_class varchar(2)
+)
+
+insert into studenttri1 values('Anuj Kumar','8')
+insert into studenttri1 values('Archna Shahai','9')
+insert into studenttri1 values('Sonu Singh','11')
+insert into studenttri1 values('Akansha Arya','12')
+insert into studenttri1 values('Rahul Singh','12')
+--next page--
+create trigger afterinsert on studenttri1
+for insert
+as
+declare @stuid int;
+declare @stuname varchar(20);
+declare @stuclass varchar(2);
+declare @audit_action varchar(100);
+select @stuid =i.stu_id from inserted i;
+select @stuname=i.stu_name from inserted i;
+select @stuclass=i.stu_class from inserted i;
+set @audit_action='Inserted Record -- After Insert Trigger.';
+
+insert into studenttri_Audit
+(stu_name,stu_class,audit_action,audit_date)
+values(@stuname,@stuclass,@audit_action,getdate());   
+PRINT 'AFTER INSERT trigger fired.'  
+GO  
+
+create table studenttri_Audit
+(stu_id int primary key identity,
+stu_name varchar(100),
+stu_class varchar(10),
+audit_action varchar(100),
+audit_date datetime
+)
+insert into studenttri1 values('Ram Kumar','12')
+
+select * from studenttri_Audit
